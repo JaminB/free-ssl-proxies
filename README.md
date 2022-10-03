@@ -9,7 +9,7 @@ requires no external Python dependencies to work.
 ### Installation
 
 ```commandline
-pip3 install free-ssl-proxies
+pip3 install .
 ```
 
 ### Importing
@@ -72,7 +72,8 @@ for fast_proxy in proxies.get_fastest():
 
 #### Random
 
-You can get a random proxy selected from the fastest proxies if profiling has been done
+You can get a random proxy selected from the fastest proxies if profiling has been done. If profiling has not been done
+then we will pick from the entire pool of available proxies.
 
 ```
 proxy = proxies.random()
