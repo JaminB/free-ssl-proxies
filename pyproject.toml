@@ -1,0 +1,14 @@
+[tool.isort]
+profile = "black"
+order_by_type = true
+
+[project]
+name = "free-ssl-proxies"
+version = "0.1.0"
+description = "A minimal python library that scrapes ssl proxies from https://sslproxies.org."
+authors = [
+    {name = "JaminB"},
+]
+license = {file = "LICENSE.txt"}
+readme = "README.md"
+requires-python = ">=3.6"

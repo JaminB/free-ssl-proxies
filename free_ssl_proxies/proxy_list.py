@@ -1,14 +1,13 @@
 import json
-import tempfile
 import logging
+import tempfile
 import time
 import urllib.error
-from random import choice
-from xml.etree import ElementTree
-from urllib import request
-from typing import List, Optional, Tuple
 from datetime import date, datetime, timedelta
-
+from random import choice
+from typing import List, Optional, Tuple
+from urllib import request
+from xml.etree import ElementTree
 
 CACHE_FILE = f"{tempfile.gettempdir()}/proxies.tmp.txt"
 
@@ -127,14 +126,13 @@ def profile_proxy_host(proxy_host: str, timeout: int = 3) -> Optional[float]:
         start_time = time.time()
         request.urlopen(req, timeout=timeout)
         end_time = time.time()
-        print(f"{proxy_host} test request: {end_time - start_time}s.")
         return end_time - start_time
     except urllib.error.URLError as e:
-        logging.error(
-            f"Error while profiling: {proxy_host}, likely unacceptable timeout - {e}"
+        logging.warning(
+            f"Encountered error while profiling: {proxy_host}, likely unacceptable timeout - {e}"
         )
     except TimeoutError as e:
-        logging.error(f"Error while profiling: {proxy_host}, ssl socket timeout - {e}")
+        logging.warning(f"Encountered error while profiling: {proxy_host}, ssl socket timeout - {e}")
     return None
 
 
@@ -284,4 +282,3 @@ class ProxyList:
 def write_proxy_list_to_cache(proxy_list: ProxyList):
     with open(CACHE_FILE, "w") as proxy_list_fo:
         proxy_list_fo.write(str(proxy_list))
-
