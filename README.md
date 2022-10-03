@@ -1,6 +1,7 @@
 ## Description
 
-Free-ssl-proxies is a lightweight scraper that pulls live `ssl` proxies from `https://sslproxies.org/`. This library 
+`free-ssl-proxies` is a lightweight Python library that scrapes `ssl` proxies from `https://sslproxies.org/`, 
+and provides some convenient objects and caching methods for working with the retrieved proxies. This library 
 requires no external Python dependencies to work.
 
 
