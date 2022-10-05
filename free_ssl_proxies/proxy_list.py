@@ -224,9 +224,21 @@ class ProxyList:
         req = request.Request(
             url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64)"}
         )
-        response = request.urlopen(req)
-        proxy_list = parse_ssl_proxies_org_table(response.read().decode("ascii"))
-        return cls(proxy_list, profile, timeout)
+        attempts = 0
+        while attempts < 5:
+            try:
+                response = request.urlopen(req)
+                proxy_list = parse_ssl_proxies_org_table(response.read().decode("ascii"))
+                return cls(proxy_list, profile, timeout)
+
+            except urllib.error.URLError as e:
+                logging.warning(
+                    f"Encountered error while pulling: {url}, likely unacceptable timeout - {e}"
+                )
+            except TimeoutError as e:
+                logging.warning(f"Encountered error while pulling: {url}, ssl socket timeout - {e}")
+            time.sleep(5)
+            attempts += 1
 
     @classmethod
     def from_cache(cls, profile: bool = False, timeout: int = 3):
