@@ -2,16 +2,13 @@
 profile = "black"
 order_by_type = true
 
-[project]
+[tool.poetry]
 name = "free-ssl-proxies"
-version = "0.1.0"
+version = "0.1.2"
 description = "A minimal python library that scrapes ssl proxies from https://sslproxies.org."
-authors = [
-    {name = "JaminB"},
-]
-license = {file = "LICENSE.txt"}
+authors=["JaminB"]
 readme = "README.md"
-requires-python = ">=3.6"
 
 [build-system]
 requires = ["poetry-core>=1.0.0,<2.0.0"]
+build-backend = "poetry.core.masonry.api"
